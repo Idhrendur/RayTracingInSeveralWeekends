@@ -1,7 +1,6 @@
 #include <iostream>
 
 
-
 constexpr int imageWidth = 256;
 constexpr int imageHeight = 256;
 
@@ -12,6 +11,7 @@ int main()
 	std::cout << "255\n";
 	for (int j = imageHeight - 1; j >= 0; --j)
 	{
+		std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
 		for (int i = 0; i < imageWidth; ++i)
 		{
 			const auto r = static_cast<float>(i) / (imageWidth - 1);
