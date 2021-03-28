@@ -1,5 +1,6 @@
 #include "color.h"
 #include "ray.h"
+#include "sphere.h"
 #include "vector.h"
 #include <cmath>
 #include <iostream>
@@ -10,29 +11,12 @@
 namespace RayTracer
 {
 
-std::optional<float> hitSphere(const Vector& center, float radius, const Ray& ray)
-{
-	const auto originToCenter = ray.origin() - center;
-
-	const auto a = ray.direction().lengthSquared();
-	const auto halfB = originToCenter.dot(ray.direction());
-	const auto c = originToCenter.lengthSquared() - radius * radius;
-	const auto discriminant = halfB * halfB - a * c;
-	if (discriminant < 0)
-	{
-		return std::nullopt;
-	}
-
-	return (-halfB - std::sqrt(discriminant)) / a;
-}
-
-
 Color rayColor(const Ray& ray)
 {
-	const auto t = hitSphere(Vector(0, 0, -1), 0.5, ray);
-	if (t)
+	const auto hitRecord = Sphere(Vector(0, 0, -1), 0.5).hit(ray, 0.0F, 100.0F);
+	if (hitRecord)
 	{
-		const auto normal = (ray.at(*t) - Vector(0, 0, -1)).unitVector();
+		const auto normal = (ray.at(hitRecord->t) - Vector(0, 0, -1)).unitVector();
 		return 0.5F * Color(normal.x() + 1, normal.y() + 1, normal.z() + 1);
 	}
 

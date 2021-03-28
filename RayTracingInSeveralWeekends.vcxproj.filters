@@ -16,6 +16,9 @@
     <ClCompile Include="Source\vector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\sphere.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\color.h">
@@ -25,6 +28,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\ray.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\hittable.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\sphere.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

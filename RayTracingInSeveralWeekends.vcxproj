@@ -145,11 +145,14 @@
   <ItemGroup>
     <ClCompile Include="Source\color.cpp" />
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\sphere.cpp" />
     <ClCompile Include="Source\vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\color.h" />
+    <ClInclude Include="Source\hittable.h" />
     <ClInclude Include="Source\ray.h" />
+    <ClInclude Include="Source\sphere.h" />
     <ClInclude Include="Source\vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
