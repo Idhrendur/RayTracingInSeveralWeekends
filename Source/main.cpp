@@ -5,12 +5,34 @@
 
 
 
-RayTracer::Color rayColor(const RayTracer::Ray& ray)
+namespace RayTracer
 {
+
+bool hitSphere(const Vector& center, float radius, const Ray& ray)
+{
+	const auto originToCenter = ray.origin() - center;
+
+	const auto a = ray.direction().dot(ray.direction());
+	const auto b = 2.0F * originToCenter.dot(ray.direction());
+	const auto c = originToCenter.dot(originToCenter) - radius * radius;
+	const auto discriminant = b * b - 4 * a * c;
+	return discriminant > 0;
+}
+
+
+Color rayColor(const Ray& ray)
+{
+	if (hitSphere(Vector(0, 0, -1), 0.5, ray))
+	{
+		return {1, 0, 0};
+	}
+
 	const auto unitDirection = ray.direction().unitVector();
 	const auto t = 0.5F * (unitDirection.y() + 1.0F);
-	return (1.0F - t) * RayTracer::Color(1.0F, 1.0F, 1.0F) + t * RayTracer::Color(0.5F, 0.7F, 1.0F);
+	return (1.0F - t) * Color(1.0F, 1.0F, 1.0F) + t * Color(0.5F, 0.7F, 1.0F);
 }
+
+} // namespace RayTracer
 
 
 int main()
@@ -44,7 +66,7 @@ int main()
 				const auto u = static_cast<float>(i) / (imageWidth - 1);
 				const auto v = static_cast<float>(j) / (imageHeight - 1);
 				RayTracer::Ray ray(origin, lowerLeftCorner + u * horizontal + v * vertical - origin);
-				RayTracer::Color pixelColor = rayColor(ray);
+				const auto pixelColor = rayColor(ray);
 				std::cout << pixelColor;
 			}
 		}
