@@ -16,6 +16,10 @@ class Color
 	[[nodiscard]] const auto& g() const { return g_; }
 	[[nodiscard]] const auto& b() const { return b_; }
 
+	Color operator+(const Color& rhs) const;
+	friend Color operator*(const Color& color, float scalar);
+	friend Color operator*(float scalar, const Color& color);
+
   private:
 	float r_ = 0.0F;
 	float g_ = 0.0F;
@@ -23,9 +27,11 @@ class Color
 };
 
 
+Color operator*(const Color& color, float scalar);
+Color operator*(float scalar, const Color& color);
 std::ostream& operator<<(std::ostream& out, const Color& color);
 
-} // namespace rayTracer
+} // namespace RayTracer
 
 
 
