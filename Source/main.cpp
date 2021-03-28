@@ -14,16 +14,16 @@ std::optional<float> hitSphere(const Vector& center, float radius, const Ray& ra
 {
 	const auto originToCenter = ray.origin() - center;
 
-	const auto a = ray.direction().dot(ray.direction());
-	const auto b = 2.0F * originToCenter.dot(ray.direction());
-	const auto c = originToCenter.dot(originToCenter) - radius * radius;
-	const auto discriminant = b * b - 4 * a * c;
+	const auto a = ray.direction().lengthSquared();
+	const auto halfB = originToCenter.dot(ray.direction());
+	const auto c = originToCenter.lengthSquared() - radius * radius;
+	const auto discriminant = halfB * halfB - a * c;
 	if (discriminant < 0)
 	{
 		return std::nullopt;
 	}
 
-	return (-b - std::sqrt(discriminant)) / (2.0F * a);
+	return (-halfB - std::sqrt(discriminant)) / a;
 }
 
 

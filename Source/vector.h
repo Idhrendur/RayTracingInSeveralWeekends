@@ -23,6 +23,7 @@ class Vector
 	[[nodiscard]] float dot(const Vector& rhs) const;
 	[[nodiscard]] Vector cross(const Vector& rhs) const;
 	[[nodiscard]] Vector unitVector() const;
+	[[nodiscard]] float lengthSquared() const;
 
   private:
 	[[nodiscard]] float length() const;

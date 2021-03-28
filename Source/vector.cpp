@@ -51,7 +51,13 @@ RayTracer::Vector RayTracer::Vector::unitVector() const
 }
 
 
+float RayTracer::Vector::lengthSquared() const
+{
+	return x_ * x_ + y_ * y_ + z_ * z_;
+}
+
+
 float RayTracer::Vector::length() const
 {
-	return std::sqrt(x_ * x_ + y_ * y_ + z_ * z_);
+	return std::sqrt(lengthSquared());
 }
