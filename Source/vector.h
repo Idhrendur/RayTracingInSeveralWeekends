@@ -11,21 +11,21 @@ class Vector
   public:
 	Vector(float x, float y, float z): x_(x), y_(y), z_(z) {}
 
-	const auto& x() const { return x_; }
-	const auto& y() const { return y_; }
-	const auto& z() const { return z_; }
+	[[nodiscard]] const auto& x() const { return x_; }
+	[[nodiscard]] const auto& y() const { return y_; }
+	[[nodiscard]] const auto& z() const { return z_; }
 
-	Vector operator+(const Vector& rhs) const;
-	Vector operator-(const Vector& rhs) const;
-	friend Vector operator*(const Vector& vector, float scalar);
-	friend Vector operator*(float scalar, const Vector& vector);
-	Vector operator/(float scalar) const;
-	float dot(const Vector& rhs) const;
-	Vector cross(const Vector& rhs) const;
-	Vector unitVector() const;
+	[[nodiscard]] Vector operator+(const Vector& rhs) const;
+	[[nodiscard]] Vector operator-(const Vector& rhs) const;
+	[[nodiscard]] friend Vector operator*(const Vector& vector, float scalar);
+	[[nodiscard]] friend Vector operator*(float scalar, const Vector& vector);
+	[[nodiscard]] Vector operator/(float scalar) const;
+	[[nodiscard]] float dot(const Vector& rhs) const;
+	[[nodiscard]] Vector cross(const Vector& rhs) const;
+	[[nodiscard]] Vector unitVector() const;
 
   private:
-	float length() const;
+	[[nodiscard]] float length() const;
 
 	float x_ = 0.0;
 	float y_ = 0.0;

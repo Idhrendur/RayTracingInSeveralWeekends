@@ -15,10 +15,10 @@ class Ray
   public:
 	Ray(const Vector& origin, const Vector& direction): origin_(origin), direction_(direction) {}
 
-	const auto& origin() const { return origin_; }
-	const auto& direction() const { return direction_; }
+	[[nodiscard]] const auto& origin() const { return origin_; }
+	[[nodiscard]] const auto& direction() const { return direction_; }
 
-	Vector at(float t) const { return origin_ + t * direction_; }
+	[[nodiscard]] Vector at(float t) const { return origin_ + t * direction_; }
 
   private:
 	Vector origin_;
