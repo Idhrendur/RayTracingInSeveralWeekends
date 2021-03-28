@@ -3,6 +3,12 @@
 
 
 
+RayTracer::Vector RayTracer::Vector::operator-() const
+{
+	return {-x_, -y_, -z_};
+}
+
+
 RayTracer::Vector RayTracer::Vector::operator+(const Vector& rhs) const
 {
 	return {x_ + rhs.x_, y_ + rhs.y_, z_ + rhs.z_};

@@ -15,6 +15,7 @@ class Vector
 	[[nodiscard]] const auto& y() const { return y_; }
 	[[nodiscard]] const auto& z() const { return z_; }
 
+	[[nodiscard]] Vector operator-() const;
 	[[nodiscard]] Vector operator+(const Vector& rhs) const;
 	[[nodiscard]] Vector operator-(const Vector& rhs) const;
 	[[nodiscard]] friend Vector operator*(const Vector& vector, float scalar);

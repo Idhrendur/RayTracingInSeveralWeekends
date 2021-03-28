@@ -32,5 +32,7 @@ std::optional<RayTracer::HitRecord> RayTracer::Sphere::hit(const Ray& ray, float
 	const auto point = ray.at(root);
 	const auto normal = (point - center_) / radius_;
 
-	return HitRecord{.point = point, .normal = normal, .t = root};
+	HitRecord hitRecord{.point = point, .normal = normal, .t = root};
+	hitRecord.setFaceNormal(ray, normal);
+	return hitRecord;
 }

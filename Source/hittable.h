@@ -17,6 +17,13 @@ struct HitRecord
 	Vector point;
 	Vector normal;
 	float t = 0.0F;
+	bool frontFace = true;
+
+	void setFaceNormal(const Ray& ray, const Vector& outwardNormal)
+	{
+		frontFace = ray.direction().dot(outwardNormal) < 0;
+		normal = frontFace ? outwardNormal : -outwardNormal;
+	}
 };
 
 
