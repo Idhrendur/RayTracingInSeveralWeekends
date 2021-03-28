@@ -32,6 +32,10 @@ class Vector
 	float z_ = 0.0;
 };
 
+
+[[nodiscard]] Vector operator*(const Vector& vector, float scalar);
+[[nodiscard]] Vector operator*(float scalar, const Vector& vector);
+
 } // namespace RayTracer
 
 
