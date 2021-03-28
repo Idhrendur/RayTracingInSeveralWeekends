@@ -3,10 +3,13 @@
 #include <ostream>
 
 
+
+namespace RayTracer
+{
+
 class Color
 {
   public:
-	Color();
 	Color(float r, float g, float b): r_(r), g_(g), b_(b) {}
 
 	[[nodiscard]] const auto& r() const { return r_; }
@@ -21,6 +24,8 @@ class Color
 
 
 std::ostream& operator<<(std::ostream& out, const Color& color);
+
+} // namespace rayTracer
 
 
 

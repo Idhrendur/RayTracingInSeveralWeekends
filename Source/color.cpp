@@ -3,7 +3,7 @@
 
 
 constexpr float color_translation = 255.999F;
-std::ostream& operator<<(std::ostream& out, const Color& color)
+std::ostream& RayTracer::operator<<(std::ostream& out, const RayTracer::Color& color)
 {
 	// Write the translated [0,255] value of each color component.
 	out << static_cast<int>(color_translation * color.r()) << ' ' << static_cast<int>(color_translation * color.g())

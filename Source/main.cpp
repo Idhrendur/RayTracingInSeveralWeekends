@@ -17,7 +17,7 @@ int main()
 			std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
 			for (auto i = 0; i < imageWidth; ++i)
 			{
-				Color color(static_cast<float>(i) / (imageWidth - 1), static_cast<float>(j) / (imageHeight - 1), 0.25F);
+				RayTracer::Color color(static_cast<float>(i) / (imageWidth - 1), static_cast<float>(j) / (imageHeight - 1), 0.25F);
 
 				std::cout << color;
 			}
