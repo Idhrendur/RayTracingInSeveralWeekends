@@ -1,14 +1,16 @@
 #include "color.h"
 #include "ray.h"
 #include "vector.h"
+#include <cmath>
 #include <iostream>
+#include <optional>
 
 
 
 namespace RayTracer
 {
 
-bool hitSphere(const Vector& center, float radius, const Ray& ray)
+std::optional<float> hitSphere(const Vector& center, float radius, const Ray& ray)
 {
 	const auto originToCenter = ray.origin() - center;
 
@@ -16,20 +18,27 @@ bool hitSphere(const Vector& center, float radius, const Ray& ray)
 	const auto b = 2.0F * originToCenter.dot(ray.direction());
 	const auto c = originToCenter.dot(originToCenter) - radius * radius;
 	const auto discriminant = b * b - 4 * a * c;
-	return discriminant > 0;
+	if (discriminant < 0)
+	{
+		return std::nullopt;
+	}
+
+	return (-b - std::sqrt(discriminant)) / (2.0F * a);
 }
 
 
 Color rayColor(const Ray& ray)
 {
-	if (hitSphere(Vector(0, 0, -1), 0.5, ray))
+	const auto t = hitSphere(Vector(0, 0, -1), 0.5, ray);
+	if (t)
 	{
-		return {1, 0, 0};
+		const auto normal = (ray.at(*t) - Vector(0, 0, -1)).unitVector();
+		return 0.5F * Color(normal.x() + 1, normal.y() + 1, normal.z() + 1);
 	}
 
 	const auto unitDirection = ray.direction().unitVector();
-	const auto t = 0.5F * (unitDirection.y() + 1.0F);
-	return (1.0F - t) * Color(1.0F, 1.0F, 1.0F) + t * Color(0.5F, 0.7F, 1.0F);
+	const auto background = 0.5F * (unitDirection.y() + 1.0F);
+	return (1.0F - background) * Color(1.0F, 1.0F, 1.0F) + background * Color(0.5F, 0.7F, 1.0F);
 }
 
 } // namespace RayTracer
