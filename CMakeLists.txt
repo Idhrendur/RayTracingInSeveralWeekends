@@ -14,11 +14,13 @@ include_directories(${TEST_SOURCE_DIR})
 
 set(MAIN_SOURCE ${MAIN_SOURCE} "${PROJECT_SOURCE_DIR}/main.cpp")
 set(COLOR_SOURCE ${COLOR_SOURCE} "${PROJECT_SOURCE_DIR}/color.cpp")
+set(VECTOR_SOURCE ${VECTOR_SOURCE} "${PROJECT_SOURCE_DIR}/vector.cpp")
 
 add_executable(
 	RayTracingInSeveralWeekends
 	${MAIN_SOURCE}
 	${COLOR_SOURCE}
+	${VECTOR_SOURCE}
 )
 set_target_properties( RayTracingInSeveralWeekends
     PROPERTIES
